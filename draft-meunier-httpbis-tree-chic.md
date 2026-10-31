@@ -68,19 +68,19 @@ The tree header contains records of this form (tags omitted):
 ~~~aasvg
                            Root hash
                                ^
-                              H()
+                              Hash
                                |
                  +---------------+---------------+
                  | Len L, Hash L | Len R, Hash R |
                  +---------------+---------------+
                        /               \
-                     H()               H()
+                     Hash              Hash
                       |                 |
           +----------+----------+ +----------+----------+
           | Len 0,H0 | Len 1,H1 | | Len 2,H2 | Len 3,H3 |
           +----------+----------+ +----------+----------+
                 |           |           |           |
-               H()         H()         H()         H()
+               Hash        Hash        Hash        Hash
                 |           |           |           |
              Chunk 0     Chunk 1     Chunk 2     Chunk 3
 ~~~
