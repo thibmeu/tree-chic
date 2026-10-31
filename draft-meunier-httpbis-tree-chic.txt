@@ -67,25 +67,97 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Security Considerations
-   4.  IANA Considerations
-   5.  References
-     5.1.  Normative References
-     5.2.  Informative References
+   3.  Chained Hash Integrity Format
+     3.1.  Format Description
+     3.2.  Consumption and Validation
+     3.3.  Construction
+     3.4.  Length Constraints
+   4.  HTTP Usage
+     4.1.  Content-Coding
+     4.2.  Digest Format
+     4.3.  Example
+   5.  Security Considerations
+   6.  IANA Considerations
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
    Acknowledgments
    Author's Address
 
 1.  Introduction
 
-   [CHIC] describe a chained hash integrity coding for HTTP.  To allow
-   for partial validation of an HTTP resource, using a merkle tree based
-   construction seems more appropriate.  It would allow for ranges,
-   sending content out-of-order, while maintaining integrity and minimal
-   overhead.
+   [CHIC] splits content into chunks.  Each non-final chunk carries the
+   hash of the next.  Verification follows the chain from the first
+   chunk.  Starting from its hash, reading a later range requires
+   verifying the preceding chunks.
 
-   TODO
+   This document replaces the chain with a Merkle tree.  A trusted root
+   hash and a proof allow a recipient to verify a chunk without reading
+   earlier content.  Chunks can be read sequentially, by range, or out
+   of order.
 
-                        Figure 1: Overview of Format
+   *  Variable-length chunks, as in [CHIC].  Boundaries can follow
+      application needs, such as progressive image rendering.
+
+   *  Subtree content lengths authenticate chunk positions in the byte
+      stream.
+
+   *  Precompute and store the tree with the content.  Serve both from
+      ordinary object storage, such as S3, using range requests.  No
+      server-generated proofs.
+
+   *  Share proof hashes across chunks.  TODO: overhead and verifier
+      state.
+
+   *  Finish the content before publishing the root hash, as with CHIC.
+
+   Lengths and hashes sit in a tree header before the content.  The
+   content bytes stay contiguous, with no framing between chunks.  A
+   header length allows a reader to skip the tree and locate the
+   content.
+
+   The tree header contains records of this form (tags omitted):
+
+                              Root hash
+                                  ^
+                                 H()
+                                  |
+                    +---------------+---------------+
+                    | Len L, Hash L | Len R, Hash R |
+                    +---------------+---------------+
+                          /               \
+                        H()               H()
+                         |                 |
+             +----------+----------+ +----------+----------+
+             | Len 0,H0 | Len 1,H1 | | Len 2,H2 | Len 3,H3 |
+             +----------+----------+ +----------+----------+
+                   |           |           |           |
+                  H()         H()         H()         H()
+                   |           |           |           |
+                Chunk 0     Chunk 1     Chunk 2     Chunk 3
+
+                 Figure 1: Tree Header (Logical Structure)
+
+   On the wire:
+
+     +------------+----------------+----~~~~----+----~~~~----+
+     | Header Len | Tree Header    |  Chunk 0   |  Chunk 1 ...|
+     +------------+----------------+----~~~~----+----~~~~----+
+     <-- First byte                              Last byte -->
+                                   <-- Continuous content -->
+
+                        Figure 2: Overview of Format
+
+   *  Header length counts tree header bytes, excluding the length field
+      itself.
+
+   *  Length beside a hash counts content bytes covered by that hash.
+
+   *  A sequential reader receives the tree header before the first
+      chunk.
+
+   TODO: node encoding and layout that keeps proof retrieval to a few
+   requests.
 
 2.  Conventions and Definitions
 
@@ -95,17 +167,107 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Security Considerations
+3.  Chained Hash Integrity Format
+
+3.1.  Format Description
+
+   *  Encoding: header length, tree header, original content bytes.
+
+   *  Tree header: branch records with a content length beside each
+      child hash.
+
+   *  Leaf hashes cover chunks in the continuous content region.
+
+   *  Branch hashes commit to child lengths as well as child hashes.
+
+   *  Root hash carried outside the content.
+
+   TODO: tagged hash inputs, tree shape, header-length commitment, and
+   compact proof encoding.  Skipping a branch record needs an encoded
+   size or a layout from which that size can be derived.
+
+3.2.  Consumption and Validation
+
+   Read the header length and parse the tree header.  Start with a
+   trusted root hash; verify branches before trusting their child hashes
+   and content lengths.  Use the lengths to split the content into
+   chunks.  Verify each chunk before releasing it.
+
+   For a range, retrieve the covering chunks and the required header
+   records.  Content offsets are sums of preceding chunk lengths.
+   Stored offsets add the length field size and tree header length.
+
+   TODO: partial header retrieval and ranges that cut through chunks.
+
+3.3.  Construction
+
+   Split content into chunks.  Hash leaves, then branches, up to the
+   root.  Chunks can be hashed independently.  Write the header length
+   and tree header, then copy the original content unchanged.
+
+   TODO: order of records within the tree header and index for range
+   retrieval.
+
+3.4.  Length Constraints
+
+   TODO: header length, chunk size, and tree depth limits; verifier
+   buffering.
+
+4.  HTTP Usage
+
+4.1.  Content-Coding
+
+   Use tree-chi as a placeholder content-coding name.
+
+4.2.  Digest Format
+
+   Use tree-chi as a placeholder digest algorithm name.  Value: root
+   hash.
+
+   TODO: interaction with Content-Digest and Repr-Digest for partial
+   responses.
+
+4.3.  Example
+
+   Full response, following the header layout in [CHIC].  Angle-bracket
+   values are placeholders, not valid wire syntax.
+
+   HTTP/1.1 200 OK
+   Content-Type: application/octet-stream
+   Content-Encoding: tree-chi
+   Content-Length: <encoded length>
+   Content-Digest: tree-chi=:<base64 root hash>:
+   Accept-Ranges: bytes
+
+   Range retrieval from the stored encoding:
+
+   GET /object HTTP/1.1
+   Host: example.com
+   Range: bytes=<start>-<end>
+
+   HTTP/1.1 206 Partial Content
+   Content-Type: application/octet-stream
+   Content-Encoding: tree-chi
+   Content-Range: bytes <start>-<end>/<encoded length>
+   Content-Length: <range length>
+
+   The recipient already holds the trusted root.  Additional ranges may
+   be needed for tree header records.  These offsets address the stored
+   encoding, including the length prefix and tree header.
+
+   TODO: define decoding of partial responses.
+
+5.  Security Considerations
 
    TODO Security
 
-4.  IANA Considerations
+6.  IANA Considerations
 
-   This document has no IANA actions.
+   TODO: content-coding and digest algorithm registrations.
 
-5.  References
+7.  References
 
-5.1.  Normative References
+7.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -116,7 +278,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-5.2.  Informative References
+7.2.  Informative References
 
    [CHIC]     Thomson, M., "Chained Hash Integrity Coding for HTTP",
               Work in Progress, Internet-Draft, draft-thomson-httpbis-
