@@ -9,7 +9,7 @@ number:
 date:
 consensus: true
 v: 3
-area: "ART"
+area: "Web and Internet Transport"
 workgroup: "HTTP"
 keyword:
  - blockchain
