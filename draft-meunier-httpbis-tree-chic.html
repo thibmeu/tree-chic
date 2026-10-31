@@ -1246,25 +1246,13 @@ allows a reader to skip the tree and locate the content.<a href="#section-1-4" c
           <div class="alignLeft art-svg artwork" id="section-1-6.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="320" width="384" viewBox="0 0 384 320" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 8,192 L 8,224" fill="none" stroke="black"></path>
-              <path d="M 56,232 L 56,248" fill="none" stroke="black"></path>
-              <path d="M 56,264 L 56,272" fill="none" stroke="black"></path>
               <path d="M 64,96 L 64,128" fill="none" stroke="black"></path>
               <path d="M 96,192 L 96,224" fill="none" stroke="black"></path>
-              <path d="M 104,168 L 104,184" fill="none" stroke="black"></path>
-              <path d="M 152,232 L 152,248" fill="none" stroke="black"></path>
-              <path d="M 152,264 L 152,272" fill="none" stroke="black"></path>
-              <path d="M 176,48 L 176,56" fill="none" stroke="black"></path>
-              <path d="M 176,72 L 176,88" fill="none" stroke="black"></path>
               <path d="M 184,192 L 184,224" fill="none" stroke="black"></path>
               <path d="M 192,96 L 192,128" fill="none" stroke="black"></path>
               <path d="M 200,192 L 200,224" fill="none" stroke="black"></path>
-              <path d="M 248,168 L 248,184" fill="none" stroke="black"></path>
-              <path d="M 248,232 L 248,248" fill="none" stroke="black"></path>
-              <path d="M 248,264 L 248,272" fill="none" stroke="black"></path>
               <path d="M 288,192 L 288,224" fill="none" stroke="black"></path>
               <path d="M 320,96 L 320,128" fill="none" stroke="black"></path>
-              <path d="M 344,232 L 344,248" fill="none" stroke="black"></path>
-              <path d="M 344,264 L 344,272" fill="none" stroke="black"></path>
               <path d="M 376,192 L 376,224" fill="none" stroke="black"></path>
               <path d="M 64,96 L 320,96" fill="none" stroke="black"></path>
               <path d="M 64,128 L 320,128" fill="none" stroke="black"></path>
@@ -1273,17 +1261,12 @@ allows a reader to skip the tree and locate the content.<a href="#section-1-4" c
               <path d="M 8,224 L 184,224" fill="none" stroke="black"></path>
               <path d="M 200,224 L 376,224" fill="none" stroke="black"></path>
               <path d="M 88,192 C 96.83064,192 104,184.83064 104,176" fill="none" stroke="black"></path>
-              <path class="jump" d="M 344,264 C 338,264 338,248 344,248" fill="none" stroke="black"></path>
-              <path class="jump" d="M 248,264 C 242,264 242,248 248,248" fill="none" stroke="black"></path>
-              <path class="jump" d="M 176,72 C 170,72 170,56 176,56" fill="none" stroke="black"></path>
-              <polygon class="arrowhead" points="184,48 172,42.4 172,53.6" fill="black" transform="rotate(270,176,48)"></polygon>
-              <path class="jump" d="M 152,264 C 146,264 146,248 152,248" fill="none" stroke="black"></path>
-              <path class="jump" d="M 56,264 C 50,264 50,248 56,248" fill="none" stroke="black"></path>
               <g class="text">
                 <text x="156" y="36">Root</text>
                 <text x="196" y="36">hash</text>
-                <text x="168" y="68">H</text>
-                <text x="184" y="68">)</text>
+                <text x="176" y="52">^</text>
+                <text x="180" y="68">Hash</text>
+                <text x="176" y="84">|</text>
                 <text x="88" y="116">Len</text>
                 <text x="116" y="116">L,</text>
                 <text x="148" y="116">Hash</text>
@@ -1294,8 +1277,9 @@ allows a reader to skip the tree and locate the content.<a href="#section-1-4" c
                 <text x="304" y="116">R</text>
                 <text x="112" y="148">/</text>
                 <text x="240" y="148">\</text>
-                <text x="104" y="164">H()</text>
-                <text x="248" y="164">H()</text>
+                <text x="108" y="164">Hash</text>
+                <text x="252" y="164">Hash</text>
+                <text x="248" y="180">|</text>
                 <text x="32" y="212">Len</text>
                 <text x="68" y="212">0,H0</text>
                 <text x="120" y="212">Len</text>
@@ -1304,14 +1288,18 @@ allows a reader to skip the tree and locate the content.<a href="#section-1-4" c
                 <text x="260" y="212">2,H2</text>
                 <text x="312" y="212">Len</text>
                 <text x="348" y="212">3,H3</text>
-                <text x="48" y="260">H</text>
-                <text x="64" y="260">)</text>
-                <text x="144" y="260">H</text>
-                <text x="160" y="260">)</text>
-                <text x="240" y="260">H</text>
-                <text x="256" y="260">)</text>
-                <text x="336" y="260">H</text>
-                <text x="352" y="260">)</text>
+                <text x="56" y="244">|</text>
+                <text x="152" y="244">|</text>
+                <text x="248" y="244">|</text>
+                <text x="344" y="244">|</text>
+                <text x="60" y="260">Hash</text>
+                <text x="156" y="260">Hash</text>
+                <text x="252" y="260">Hash</text>
+                <text x="348" y="260">Hash</text>
+                <text x="56" y="276">|</text>
+                <text x="152" y="276">|</text>
+                <text x="248" y="276">|</text>
+                <text x="344" y="276">|</text>
                 <text x="48" y="292">Chunk</text>
                 <text x="80" y="292">0</text>
                 <text x="144" y="292">Chunk</text>
