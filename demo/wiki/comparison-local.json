@@ -1,0 +1,1733 @@
+{
+  "measuredAt": "2026-10-31T22:05:39.330Z",
+  "base": "local",
+  "repeats": 1,
+  "coverage": "complete-stream prefix only; not the full Wikipedia snapshot",
+  "size": 206518721,
+  "chunkStatistics": {
+    "count": 2733,
+    "min": 552,
+    "median": 71550,
+    "p95": 131007,
+    "max": 509781,
+    "total": 206518721
+  },
+  "method": "Cold client metadata on each run; title-to-byte-range hints and roots supplied locally; no manifest request counted; sequential authenticated navigation; no speculative payload fetch. Layout order rotates. Time includes verified byte retrieval, excludes bzip2 extraction. HTTP headers/TLS bytes and decompressor memory excluded. Payload buffer is actual full covering interval; proof buffer is peak fetched batch, not total process RSS. Upstream caches are not controlled.",
+  "layouts": [
+    {
+      "name": "variable-2",
+      "root": "a62483ceb32e5d93456934fed80238fd2b25e62d9692d7f9eef0f2234ec8c56f",
+      "fanout": 2,
+      "capacity": 4096,
+      "leafCount": 2733,
+      "size": 206518721,
+      "headerSize": 327672
+    },
+    {
+      "name": "variable-16",
+      "root": "c48f1198563dd952b32967fae4a420be057a766b6b04bf3cda78b4fc0fb22278",
+      "fanout": 16,
+      "capacity": 4096,
+      "leafCount": 2733,
+      "size": 206518721,
+      "headerSize": 174792
+    },
+    {
+      "name": "variable-64",
+      "root": "041e17da8cfb261005f71f1b60c91035b0860951302294d9b1300219f90a769e",
+      "fanout": 64,
+      "capacity": 4096,
+      "leafCount": 2733,
+      "size": 206518721,
+      "headerSize": 166472
+    }
+  ],
+  "workloads": [
+    {
+      "name": "Paris",
+      "start": 3513818,
+      "end": 3816854,
+      "title": "Paris"
+    },
+    {
+      "name": "Cryptography",
+      "start": 4947653,
+      "end": 5050674,
+      "title": "Cryptography"
+    },
+    {
+      "name": "Wikipedia",
+      "start": 18838490,
+      "end": 18929559,
+      "title": "Wikipedia"
+    },
+    {
+      "name": "Kettering, Ohio",
+      "start": 185877273,
+      "end": 185935672,
+      "title": "Kettering, Ohio"
+    },
+    {
+      "name": "Paris (cross boundaries)",
+      "start": 3513785,
+      "end": 3816887,
+      "title": null
+    },
+    {
+      "name": "Kettering, Ohio (cross boundaries)",
+      "start": 185877240,
+      "end": 185935705,
+      "title": null
+    }
+  ],
+  "summary": [
+    {
+      "workload": "Paris",
+      "layout": "variable-2",
+      "headerBytes": 327672,
+      "fanout": 2,
+      "depth": 12,
+      "metadataBytes": 1032,
+      "payloadBytes": 303037,
+      "payloadOverfetch": 0,
+      "requests": 14,
+      "rounds": 14,
+      "payloadBufferBytes": 303037,
+      "peakProofBatchBytes": 80,
+      "medianMs": 42.64346800000001,
+      "minMs": 42.64346800000001,
+      "maxMs": 42.64346800000001
+    },
+    {
+      "workload": "Paris",
+      "layout": "variable-16",
+      "headerBytes": 174792,
+      "fanout": 16,
+      "depth": 3,
+      "metadataBytes": 1992,
+      "payloadBytes": 303037,
+      "payloadOverfetch": 0,
+      "requests": 5,
+      "rounds": 5,
+      "payloadBufferBytes": 303037,
+      "peakProofBatchBytes": 640,
+      "medianMs": 4.1534110000000055,
+      "minMs": 4.1534110000000055,
+      "maxMs": 4.1534110000000055
+    },
+    {
+      "workload": "Paris",
+      "layout": "variable-64",
+      "headerBytes": 166472,
+      "fanout": 64,
+      "depth": 2,
+      "metadataBytes": 5192,
+      "payloadBytes": 303037,
+      "payloadOverfetch": 0,
+      "requests": 4,
+      "rounds": 4,
+      "payloadBufferBytes": 303037,
+      "peakProofBatchBytes": 2560,
+      "medianMs": 4.026271000000008,
+      "minMs": 4.026271000000008,
+      "maxMs": 4.026271000000008
+    },
+    {
+      "workload": "Cryptography",
+      "layout": "variable-2",
+      "headerBytes": 327672,
+      "fanout": 2,
+      "depth": 12,
+      "metadataBytes": 1032,
+      "payloadBytes": 103022,
+      "payloadOverfetch": 0,
+      "requests": 14,
+      "rounds": 14,
+      "payloadBufferBytes": 103022,
+      "peakProofBatchBytes": 80,
+      "medianMs": 4.850815000000011,
+      "minMs": 4.850815000000011,
+      "maxMs": 4.850815000000011
+    },
+    {
+      "workload": "Cryptography",
+      "layout": "variable-16",
+      "headerBytes": 174792,
+      "fanout": 16,
+      "depth": 3,
+      "metadataBytes": 1992,
+      "payloadBytes": 103022,
+      "payloadOverfetch": 0,
+      "requests": 5,
+      "rounds": 5,
+      "payloadBufferBytes": 103022,
+      "peakProofBatchBytes": 640,
+      "medianMs": 2.4939190000000053,
+      "minMs": 2.4939190000000053,
+      "maxMs": 2.4939190000000053
+    },
+    {
+      "workload": "Cryptography",
+      "layout": "variable-64",
+      "headerBytes": 166472,
+      "fanout": 64,
+      "depth": 2,
+      "metadataBytes": 5192,
+      "payloadBytes": 103022,
+      "payloadOverfetch": 0,
+      "requests": 4,
+      "rounds": 4,
+      "payloadBufferBytes": 103022,
+      "peakProofBatchBytes": 2560,
+      "medianMs": 2.3718900000000076,
+      "minMs": 2.3718900000000076,
+      "maxMs": 2.3718900000000076
+    },
+    {
+      "workload": "Wikipedia",
+      "layout": "variable-2",
+      "headerBytes": 327672,
+      "fanout": 2,
+      "depth": 12,
+      "metadataBytes": 1032,
+      "payloadBytes": 91070,
+      "payloadOverfetch": 0,
+      "requests": 14,
+      "rounds": 14,
+      "payloadBufferBytes": 91070,
+      "peakProofBatchBytes": 80,
+      "medianMs": 10.266936999999984,
+      "minMs": 10.266936999999984,
+      "maxMs": 10.266936999999984
+    },
+    {
+      "workload": "Wikipedia",
+      "layout": "variable-16",
+      "headerBytes": 174792,
+      "fanout": 16,
+      "depth": 3,
+      "metadataBytes": 1992,
+      "payloadBytes": 91070,
+      "payloadOverfetch": 0,
+      "requests": 5,
+      "rounds": 5,
+      "payloadBufferBytes": 91070,
+      "peakProofBatchBytes": 640,
+      "medianMs": 5.4713219999999865,
+      "minMs": 5.4713219999999865,
+      "maxMs": 5.4713219999999865
+    },
+    {
+      "workload": "Wikipedia",
+      "layout": "variable-64",
+      "headerBytes": 166472,
+      "fanout": 64,
+      "depth": 2,
+      "metadataBytes": 5192,
+      "payloadBytes": 91070,
+      "payloadOverfetch": 0,
+      "requests": 4,
+      "rounds": 4,
+      "payloadBufferBytes": 91070,
+      "peakProofBatchBytes": 2560,
+      "medianMs": 2.796230000000037,
+      "minMs": 2.796230000000037,
+      "maxMs": 2.796230000000037
+    },
+    {
+      "workload": "Kettering, Ohio",
+      "layout": "variable-2",
+      "headerBytes": 327672,
+      "fanout": 2,
+      "depth": 12,
+      "metadataBytes": 1032,
+      "payloadBytes": 58400,
+      "payloadOverfetch": 0,
+      "requests": 14,
+      "rounds": 14,
+      "payloadBufferBytes": 58400,
+      "peakProofBatchBytes": 80,
+      "medianMs": 9.26833499999998,
+      "minMs": 9.26833499999998,
+      "maxMs": 9.26833499999998
+    },
+    {
+      "workload": "Kettering, Ohio",
+      "layout": "variable-16",
+      "headerBytes": 174792,
+      "fanout": 16,
+      "depth": 3,
+      "metadataBytes": 1992,
+      "payloadBytes": 58400,
+      "payloadOverfetch": 0,
+      "requests": 5,
+      "rounds": 5,
+      "payloadBufferBytes": 58400,
+      "peakProofBatchBytes": 640,
+      "medianMs": 6.459763000000066,
+      "minMs": 6.459763000000066,
+      "maxMs": 6.459763000000066
+    },
+    {
+      "workload": "Kettering, Ohio",
+      "layout": "variable-64",
+      "headerBytes": 166472,
+      "fanout": 64,
+      "depth": 2,
+      "metadataBytes": 5192,
+      "payloadBytes": 58400,
+      "payloadOverfetch": 0,
+      "requests": 4,
+      "rounds": 4,
+      "payloadBufferBytes": 58400,
+      "peakProofBatchBytes": 2560,
+      "medianMs": 12.088797,
+      "minMs": 12.088797,
+      "maxMs": 12.088797
+    },
+    {
+      "workload": "Paris (cross boundaries)",
+      "layout": "variable-2",
+      "headerBytes": 327672,
+      "fanout": 2,
+      "depth": 12,
+      "metadataBytes": 1112,
+      "payloadBytes": 704702,
+      "payloadOverfetch": 401599,
+      "requests": 15,
+      "rounds": 14,
+      "payloadBufferBytes": 704702,
+      "peakProofBatchBytes": 160,
+      "medianMs": 18.394693000000075,
+      "minMs": 18.394693000000075,
+      "maxMs": 18.394693000000075
+    },
+    {
+      "workload": "Paris (cross boundaries)",
+      "layout": "variable-16",
+      "headerBytes": 174792,
+      "fanout": 16,
+      "depth": 3,
+      "metadataBytes": 1992,
+      "payloadBytes": 704702,
+      "payloadOverfetch": 401599,
+      "requests": 5,
+      "rounds": 5,
+      "payloadBufferBytes": 704702,
+      "peakProofBatchBytes": 640,
+      "medianMs": 16.587107999999944,
+      "minMs": 16.587107999999944,
+      "maxMs": 16.587107999999944
+    },
+    {
+      "workload": "Paris (cross boundaries)",
+      "layout": "variable-64",
+      "headerBytes": 166472,
+      "fanout": 64,
+      "depth": 2,
+      "metadataBytes": 5192,
+      "payloadBytes": 704702,
+      "payloadOverfetch": 401599,
+      "requests": 4,
+      "rounds": 4,
+      "payloadBufferBytes": 704702,
+      "peakProofBatchBytes": 2560,
+      "medianMs": 15.174410999999964,
+      "minMs": 15.174410999999964,
+      "maxMs": 15.174410999999964
+    },
+    {
+      "workload": "Kettering, Ohio (cross boundaries)",
+      "layout": "variable-2",
+      "headerBytes": 327672,
+      "fanout": 2,
+      "depth": 12,
+      "metadataBytes": 1112,
+      "payloadBytes": 156997,
+      "payloadOverfetch": 98531,
+      "requests": 15,
+      "rounds": 14,
+      "payloadBufferBytes": 156997,
+      "peakProofBatchBytes": 160,
+      "medianMs": 13.93262500000003,
+      "minMs": 13.93262500000003,
+      "maxMs": 13.93262500000003
+    },
+    {
+      "workload": "Kettering, Ohio (cross boundaries)",
+      "layout": "variable-16",
+      "headerBytes": 174792,
+      "fanout": 16,
+      "depth": 3,
+      "metadataBytes": 1992,
+      "payloadBytes": 156997,
+      "payloadOverfetch": 98531,
+      "requests": 5,
+      "rounds": 5,
+      "payloadBufferBytes": 156997,
+      "peakProofBatchBytes": 640,
+      "medianMs": 4.966469999999958,
+      "minMs": 4.966469999999958,
+      "maxMs": 4.966469999999958
+    },
+    {
+      "workload": "Kettering, Ohio (cross boundaries)",
+      "layout": "variable-64",
+      "headerBytes": 166472,
+      "fanout": 64,
+      "depth": 2,
+      "metadataBytes": 5192,
+      "payloadBytes": 156997,
+      "payloadOverfetch": 98531,
+      "requests": 4,
+      "rounds": 4,
+      "payloadBufferBytes": 156997,
+      "peakProofBatchBytes": 2560,
+      "medianMs": 7.235582000000022,
+      "minMs": 7.235582000000022,
+      "maxMs": 7.235582000000022
+    }
+  ],
+  "runs": [
+    {
+      "workload": "Paris",
+      "layout": "variable-2",
+      "repeat": 0,
+      "contentHash": "c02fcbbec7f9503906ea24c9b5434215030b1d23d20174ec51c2d0aba104c904",
+      "stats": {
+        "fanout": 2,
+        "depth": 12,
+        "metadataBytes": 1032,
+        "payloadBytes": 303037,
+        "payloadOverfetch": 0,
+        "requests": 14,
+        "rounds": 14,
+        "payloadBufferBytes": 303037,
+        "peakProofBatchBytes": 80,
+        "elapsedMs": 42.64346800000001,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 151,
+            "bytes": 80
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 152,
+            "end": 231,
+            "bytes": 80
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 312,
+            "end": 391,
+            "bytes": 80
+          },
+          {
+            "round": 5,
+            "kind": "proof",
+            "start": 632,
+            "end": 711,
+            "bytes": 80
+          },
+          {
+            "round": 6,
+            "kind": "proof",
+            "start": 1272,
+            "end": 1351,
+            "bytes": 80
+          },
+          {
+            "round": 7,
+            "kind": "proof",
+            "start": 2552,
+            "end": 2631,
+            "bytes": 80
+          },
+          {
+            "round": 8,
+            "kind": "proof",
+            "start": 5112,
+            "end": 5191,
+            "bytes": 80
+          },
+          {
+            "round": 9,
+            "kind": "proof",
+            "start": 10232,
+            "end": 10311,
+            "bytes": 80
+          },
+          {
+            "round": 10,
+            "kind": "proof",
+            "start": 20552,
+            "end": 20631,
+            "bytes": 80
+          },
+          {
+            "round": 11,
+            "kind": "proof",
+            "start": 41112,
+            "end": 41191,
+            "bytes": 80
+          },
+          {
+            "round": 12,
+            "kind": "proof",
+            "start": 82232,
+            "end": 82311,
+            "bytes": 80
+          },
+          {
+            "round": 13,
+            "kind": "proof",
+            "start": 164472,
+            "end": 164551,
+            "bytes": 80
+          },
+          {
+            "round": 14,
+            "kind": "payload",
+            "start": 3841490,
+            "end": 4144526,
+            "bytes": 303037
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Paris",
+      "layout": "variable-16",
+      "repeat": 0,
+      "contentHash": "c02fcbbec7f9503906ea24c9b5434215030b1d23d20174ec51c2d0aba104c904",
+      "stats": {
+        "fanout": 16,
+        "depth": 3,
+        "metadataBytes": 1992,
+        "payloadBytes": 303037,
+        "payloadOverfetch": 0,
+        "requests": 5,
+        "rounds": 5,
+        "payloadBufferBytes": 303037,
+        "peakProofBatchBytes": 640,
+        "elapsedMs": 4.1534110000000055,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 711,
+            "bytes": 640
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 712,
+            "end": 1351,
+            "bytes": 640
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 11592,
+            "end": 12231,
+            "bytes": 640
+          },
+          {
+            "round": 5,
+            "kind": "payload",
+            "start": 3688610,
+            "end": 3991646,
+            "bytes": 303037
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Paris",
+      "layout": "variable-64",
+      "repeat": 0,
+      "contentHash": "c02fcbbec7f9503906ea24c9b5434215030b1d23d20174ec51c2d0aba104c904",
+      "stats": {
+        "fanout": 64,
+        "depth": 2,
+        "metadataBytes": 5192,
+        "payloadBytes": 303037,
+        "payloadOverfetch": 0,
+        "requests": 4,
+        "rounds": 4,
+        "payloadBufferBytes": 303037,
+        "peakProofBatchBytes": 2560,
+        "elapsedMs": 4.026271000000008,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 2631,
+            "bytes": 2560
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 2632,
+            "end": 5191,
+            "bytes": 2560
+          },
+          {
+            "round": 4,
+            "kind": "payload",
+            "start": 3680290,
+            "end": 3983326,
+            "bytes": 303037
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Cryptography",
+      "layout": "variable-16",
+      "repeat": 0,
+      "contentHash": "a51c3b40e66f5451b92c33f5ff486fb8e3f4a52bcb488d4690971fc37dc7e51d",
+      "stats": {
+        "fanout": 16,
+        "depth": 3,
+        "metadataBytes": 1992,
+        "payloadBytes": 103022,
+        "payloadOverfetch": 0,
+        "requests": 5,
+        "rounds": 5,
+        "payloadBufferBytes": 103022,
+        "peakProofBatchBytes": 640,
+        "elapsedMs": 2.4939190000000053,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 711,
+            "bytes": 640
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 712,
+            "end": 1351,
+            "bytes": 640
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 11592,
+            "end": 12231,
+            "bytes": 640
+          },
+          {
+            "round": 5,
+            "kind": "payload",
+            "start": 5122445,
+            "end": 5225466,
+            "bytes": 103022
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Cryptography",
+      "layout": "variable-64",
+      "repeat": 0,
+      "contentHash": "a51c3b40e66f5451b92c33f5ff486fb8e3f4a52bcb488d4690971fc37dc7e51d",
+      "stats": {
+        "fanout": 64,
+        "depth": 2,
+        "metadataBytes": 5192,
+        "payloadBytes": 103022,
+        "payloadOverfetch": 0,
+        "requests": 4,
+        "rounds": 4,
+        "payloadBufferBytes": 103022,
+        "peakProofBatchBytes": 2560,
+        "elapsedMs": 2.3718900000000076,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 2631,
+            "bytes": 2560
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 2632,
+            "end": 5191,
+            "bytes": 2560
+          },
+          {
+            "round": 4,
+            "kind": "payload",
+            "start": 5114125,
+            "end": 5217146,
+            "bytes": 103022
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Cryptography",
+      "layout": "variable-2",
+      "repeat": 0,
+      "contentHash": "a51c3b40e66f5451b92c33f5ff486fb8e3f4a52bcb488d4690971fc37dc7e51d",
+      "stats": {
+        "fanout": 2,
+        "depth": 12,
+        "metadataBytes": 1032,
+        "payloadBytes": 103022,
+        "payloadOverfetch": 0,
+        "requests": 14,
+        "rounds": 14,
+        "payloadBufferBytes": 103022,
+        "peakProofBatchBytes": 80,
+        "elapsedMs": 4.850815000000011,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 151,
+            "bytes": 80
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 152,
+            "end": 231,
+            "bytes": 80
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 312,
+            "end": 391,
+            "bytes": 80
+          },
+          {
+            "round": 5,
+            "kind": "proof",
+            "start": 632,
+            "end": 711,
+            "bytes": 80
+          },
+          {
+            "round": 6,
+            "kind": "proof",
+            "start": 1272,
+            "end": 1351,
+            "bytes": 80
+          },
+          {
+            "round": 7,
+            "kind": "proof",
+            "start": 2552,
+            "end": 2631,
+            "bytes": 80
+          },
+          {
+            "round": 8,
+            "kind": "proof",
+            "start": 5112,
+            "end": 5191,
+            "bytes": 80
+          },
+          {
+            "round": 9,
+            "kind": "proof",
+            "start": 10232,
+            "end": 10311,
+            "bytes": 80
+          },
+          {
+            "round": 10,
+            "kind": "proof",
+            "start": 20552,
+            "end": 20631,
+            "bytes": 80
+          },
+          {
+            "round": 11,
+            "kind": "proof",
+            "start": 41192,
+            "end": 41271,
+            "bytes": 80
+          },
+          {
+            "round": 12,
+            "kind": "proof",
+            "start": 82392,
+            "end": 82471,
+            "bytes": 80
+          },
+          {
+            "round": 13,
+            "kind": "proof",
+            "start": 164792,
+            "end": 164871,
+            "bytes": 80
+          },
+          {
+            "round": 14,
+            "kind": "payload",
+            "start": 5275325,
+            "end": 5378346,
+            "bytes": 103022
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Wikipedia",
+      "layout": "variable-64",
+      "repeat": 0,
+      "contentHash": "8c178a4d107bac75ba6578082aafd8c6709aee1b6006c2e698c26b474a8cc179",
+      "stats": {
+        "fanout": 64,
+        "depth": 2,
+        "metadataBytes": 5192,
+        "payloadBytes": 91070,
+        "payloadOverfetch": 0,
+        "requests": 4,
+        "rounds": 4,
+        "payloadBufferBytes": 91070,
+        "peakProofBatchBytes": 2560,
+        "elapsedMs": 2.796230000000037,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 2631,
+            "bytes": 2560
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 7752,
+            "end": 10311,
+            "bytes": 2560
+          },
+          {
+            "round": 4,
+            "kind": "payload",
+            "start": 19004962,
+            "end": 19096031,
+            "bytes": 91070
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Wikipedia",
+      "layout": "variable-2",
+      "repeat": 0,
+      "contentHash": "8c178a4d107bac75ba6578082aafd8c6709aee1b6006c2e698c26b474a8cc179",
+      "stats": {
+        "fanout": 2,
+        "depth": 12,
+        "metadataBytes": 1032,
+        "payloadBytes": 91070,
+        "payloadOverfetch": 0,
+        "requests": 14,
+        "rounds": 14,
+        "payloadBufferBytes": 91070,
+        "peakProofBatchBytes": 80,
+        "elapsedMs": 10.266936999999984,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 151,
+            "bytes": 80
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 152,
+            "end": 231,
+            "bytes": 80
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 312,
+            "end": 391,
+            "bytes": 80
+          },
+          {
+            "round": 5,
+            "kind": "proof",
+            "start": 632,
+            "end": 711,
+            "bytes": 80
+          },
+          {
+            "round": 6,
+            "kind": "proof",
+            "start": 1272,
+            "end": 1351,
+            "bytes": 80
+          },
+          {
+            "round": 7,
+            "kind": "proof",
+            "start": 2632,
+            "end": 2711,
+            "bytes": 80
+          },
+          {
+            "round": 8,
+            "kind": "proof",
+            "start": 5272,
+            "end": 5351,
+            "bytes": 80
+          },
+          {
+            "round": 9,
+            "kind": "proof",
+            "start": 10552,
+            "end": 10631,
+            "bytes": 80
+          },
+          {
+            "round": 10,
+            "kind": "proof",
+            "start": 21112,
+            "end": 21191,
+            "bytes": 80
+          },
+          {
+            "round": 11,
+            "kind": "proof",
+            "start": 42312,
+            "end": 42391,
+            "bytes": 80
+          },
+          {
+            "round": 12,
+            "kind": "proof",
+            "start": 84632,
+            "end": 84711,
+            "bytes": 80
+          },
+          {
+            "round": 13,
+            "kind": "proof",
+            "start": 169272,
+            "end": 169351,
+            "bytes": 80
+          },
+          {
+            "round": 14,
+            "kind": "payload",
+            "start": 19166162,
+            "end": 19257231,
+            "bytes": 91070
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Wikipedia",
+      "layout": "variable-16",
+      "repeat": 0,
+      "contentHash": "8c178a4d107bac75ba6578082aafd8c6709aee1b6006c2e698c26b474a8cc179",
+      "stats": {
+        "fanout": 16,
+        "depth": 3,
+        "metadataBytes": 1992,
+        "payloadBytes": 91070,
+        "payloadOverfetch": 0,
+        "requests": 5,
+        "rounds": 5,
+        "payloadBufferBytes": 91070,
+        "peakProofBatchBytes": 640,
+        "elapsedMs": 5.4713219999999865,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 711,
+            "bytes": 640
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 712,
+            "end": 1351,
+            "bytes": 640
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 16072,
+            "end": 16711,
+            "bytes": 640
+          },
+          {
+            "round": 5,
+            "kind": "payload",
+            "start": 19013282,
+            "end": 19104351,
+            "bytes": 91070
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Kettering, Ohio",
+      "layout": "variable-2",
+      "repeat": 0,
+      "contentHash": "4c8524537b5f09a887bcbb48871cf67619fb0bf1b96bf092e01fb4201610f597",
+      "stats": {
+        "fanout": 2,
+        "depth": 12,
+        "metadataBytes": 1032,
+        "payloadBytes": 58400,
+        "payloadOverfetch": 0,
+        "requests": 14,
+        "rounds": 14,
+        "payloadBufferBytes": 58400,
+        "peakProofBatchBytes": 80,
+        "elapsedMs": 9.26833499999998,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 151,
+            "bytes": 80
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 232,
+            "end": 311,
+            "bytes": 80
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 472,
+            "end": 551,
+            "bytes": 80
+          },
+          {
+            "round": 5,
+            "kind": "proof",
+            "start": 952,
+            "end": 1031,
+            "bytes": 80
+          },
+          {
+            "round": 6,
+            "kind": "proof",
+            "start": 1992,
+            "end": 2071,
+            "bytes": 80
+          },
+          {
+            "round": 7,
+            "kind": "proof",
+            "start": 3992,
+            "end": 4071,
+            "bytes": 80
+          },
+          {
+            "round": 8,
+            "kind": "proof",
+            "start": 8072,
+            "end": 8151,
+            "bytes": 80
+          },
+          {
+            "round": 9,
+            "kind": "proof",
+            "start": 16152,
+            "end": 16231,
+            "bytes": 80
+          },
+          {
+            "round": 10,
+            "kind": "proof",
+            "start": 32312,
+            "end": 32391,
+            "bytes": 80
+          },
+          {
+            "round": 11,
+            "kind": "proof",
+            "start": 64712,
+            "end": 64791,
+            "bytes": 80
+          },
+          {
+            "round": 12,
+            "kind": "proof",
+            "start": 129512,
+            "end": 129591,
+            "bytes": 80
+          },
+          {
+            "round": 13,
+            "kind": "proof",
+            "start": 259112,
+            "end": 259191,
+            "bytes": 80
+          },
+          {
+            "round": 14,
+            "kind": "payload",
+            "start": 186204945,
+            "end": 186263344,
+            "bytes": 58400
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Kettering, Ohio",
+      "layout": "variable-16",
+      "repeat": 0,
+      "contentHash": "4c8524537b5f09a887bcbb48871cf67619fb0bf1b96bf092e01fb4201610f597",
+      "stats": {
+        "fanout": 16,
+        "depth": 3,
+        "metadataBytes": 1992,
+        "payloadBytes": 58400,
+        "payloadOverfetch": 0,
+        "requests": 5,
+        "rounds": 5,
+        "payloadBufferBytes": 58400,
+        "peakProofBatchBytes": 640,
+        "elapsedMs": 6.459763000000066,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 711,
+            "bytes": 640
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 6472,
+            "end": 7111,
+            "bytes": 640
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 105672,
+            "end": 106311,
+            "bytes": 640
+          },
+          {
+            "round": 5,
+            "kind": "payload",
+            "start": 186052065,
+            "end": 186110464,
+            "bytes": 58400
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Kettering, Ohio",
+      "layout": "variable-64",
+      "repeat": 0,
+      "contentHash": "4c8524537b5f09a887bcbb48871cf67619fb0bf1b96bf092e01fb4201610f597",
+      "stats": {
+        "fanout": 64,
+        "depth": 2,
+        "metadataBytes": 5192,
+        "payloadBytes": 58400,
+        "payloadOverfetch": 0,
+        "requests": 4,
+        "rounds": 4,
+        "payloadBufferBytes": 58400,
+        "peakProofBatchBytes": 2560,
+        "elapsedMs": 12.088797,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 2631,
+            "bytes": 2560
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 97352,
+            "end": 99911,
+            "bytes": 2560
+          },
+          {
+            "round": 4,
+            "kind": "payload",
+            "start": 186043745,
+            "end": 186102144,
+            "bytes": 58400
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Paris (cross boundaries)",
+      "layout": "variable-16",
+      "repeat": 0,
+      "contentHash": "36139a69c5050f12535b5351cd87fc7cb400055f38b04f3a91616a2abf6ea2d6",
+      "stats": {
+        "fanout": 16,
+        "depth": 3,
+        "metadataBytes": 1992,
+        "payloadBytes": 704702,
+        "payloadOverfetch": 401599,
+        "requests": 5,
+        "rounds": 5,
+        "payloadBufferBytes": 704702,
+        "peakProofBatchBytes": 640,
+        "elapsedMs": 16.587107999999944,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 711,
+            "bytes": 640
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 712,
+            "end": 1351,
+            "bytes": 640
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 11592,
+            "end": 12231,
+            "bytes": 640
+          },
+          {
+            "round": 5,
+            "kind": "payload",
+            "start": 3465974,
+            "end": 4170675,
+            "bytes": 704702
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Paris (cross boundaries)",
+      "layout": "variable-64",
+      "repeat": 0,
+      "contentHash": "36139a69c5050f12535b5351cd87fc7cb400055f38b04f3a91616a2abf6ea2d6",
+      "stats": {
+        "fanout": 64,
+        "depth": 2,
+        "metadataBytes": 5192,
+        "payloadBytes": 704702,
+        "payloadOverfetch": 401599,
+        "requests": 4,
+        "rounds": 4,
+        "payloadBufferBytes": 704702,
+        "peakProofBatchBytes": 2560,
+        "elapsedMs": 15.174410999999964,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 2631,
+            "bytes": 2560
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 2632,
+            "end": 5191,
+            "bytes": 2560
+          },
+          {
+            "round": 4,
+            "kind": "payload",
+            "start": 3457654,
+            "end": 4162355,
+            "bytes": 704702
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Paris (cross boundaries)",
+      "layout": "variable-2",
+      "repeat": 0,
+      "contentHash": "36139a69c5050f12535b5351cd87fc7cb400055f38b04f3a91616a2abf6ea2d6",
+      "stats": {
+        "fanout": 2,
+        "depth": 12,
+        "metadataBytes": 1112,
+        "payloadBytes": 704702,
+        "payloadOverfetch": 401599,
+        "requests": 15,
+        "rounds": 14,
+        "payloadBufferBytes": 704702,
+        "peakProofBatchBytes": 160,
+        "elapsedMs": 18.394693000000075,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 151,
+            "bytes": 80
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 152,
+            "end": 231,
+            "bytes": 80
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 312,
+            "end": 391,
+            "bytes": 80
+          },
+          {
+            "round": 5,
+            "kind": "proof",
+            "start": 632,
+            "end": 711,
+            "bytes": 80
+          },
+          {
+            "round": 6,
+            "kind": "proof",
+            "start": 1272,
+            "end": 1351,
+            "bytes": 80
+          },
+          {
+            "round": 7,
+            "kind": "proof",
+            "start": 2552,
+            "end": 2631,
+            "bytes": 80
+          },
+          {
+            "round": 8,
+            "kind": "proof",
+            "start": 5112,
+            "end": 5191,
+            "bytes": 80
+          },
+          {
+            "round": 9,
+            "kind": "proof",
+            "start": 10232,
+            "end": 10311,
+            "bytes": 80
+          },
+          {
+            "round": 10,
+            "kind": "proof",
+            "start": 20552,
+            "end": 20631,
+            "bytes": 80
+          },
+          {
+            "round": 11,
+            "kind": "proof",
+            "start": 41112,
+            "end": 41191,
+            "bytes": 80
+          },
+          {
+            "round": 12,
+            "kind": "proof",
+            "start": 82232,
+            "end": 82311,
+            "bytes": 80
+          },
+          {
+            "round": 13,
+            "kind": "proof",
+            "start": 164472,
+            "end": 164551,
+            "bytes": 80
+          },
+          {
+            "round": 13,
+            "kind": "proof",
+            "start": 164552,
+            "end": 164631,
+            "bytes": 80
+          },
+          {
+            "round": 14,
+            "kind": "payload",
+            "start": 3618854,
+            "end": 4323555,
+            "bytes": 704702
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Kettering, Ohio (cross boundaries)",
+      "layout": "variable-64",
+      "repeat": 0,
+      "contentHash": "526d3170ff232cd9a2c2d8db2088a6c8443e95bb20c235223a973ae4f394109a",
+      "stats": {
+        "fanout": 64,
+        "depth": 2,
+        "metadataBytes": 5192,
+        "payloadBytes": 156997,
+        "payloadOverfetch": 98531,
+        "requests": 4,
+        "rounds": 4,
+        "payloadBufferBytes": 156997,
+        "peakProofBatchBytes": 2560,
+        "elapsedMs": 7.235582000000022,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 2631,
+            "bytes": 2560
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 97352,
+            "end": 99911,
+            "bytes": 2560
+          },
+          {
+            "round": 4,
+            "kind": "payload",
+            "start": 185982200,
+            "end": 186139196,
+            "bytes": 156997
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Kettering, Ohio (cross boundaries)",
+      "layout": "variable-2",
+      "repeat": 0,
+      "contentHash": "526d3170ff232cd9a2c2d8db2088a6c8443e95bb20c235223a973ae4f394109a",
+      "stats": {
+        "fanout": 2,
+        "depth": 12,
+        "metadataBytes": 1112,
+        "payloadBytes": 156997,
+        "payloadOverfetch": 98531,
+        "requests": 15,
+        "rounds": 14,
+        "payloadBufferBytes": 156997,
+        "peakProofBatchBytes": 160,
+        "elapsedMs": 13.93262500000003,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 151,
+            "bytes": 80
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 232,
+            "end": 311,
+            "bytes": 80
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 472,
+            "end": 551,
+            "bytes": 80
+          },
+          {
+            "round": 5,
+            "kind": "proof",
+            "start": 952,
+            "end": 1031,
+            "bytes": 80
+          },
+          {
+            "round": 6,
+            "kind": "proof",
+            "start": 1992,
+            "end": 2071,
+            "bytes": 80
+          },
+          {
+            "round": 7,
+            "kind": "proof",
+            "start": 3992,
+            "end": 4071,
+            "bytes": 80
+          },
+          {
+            "round": 8,
+            "kind": "proof",
+            "start": 8072,
+            "end": 8151,
+            "bytes": 80
+          },
+          {
+            "round": 9,
+            "kind": "proof",
+            "start": 16152,
+            "end": 16231,
+            "bytes": 80
+          },
+          {
+            "round": 10,
+            "kind": "proof",
+            "start": 32312,
+            "end": 32391,
+            "bytes": 80
+          },
+          {
+            "round": 11,
+            "kind": "proof",
+            "start": 64712,
+            "end": 64791,
+            "bytes": 80
+          },
+          {
+            "round": 12,
+            "kind": "proof",
+            "start": 129512,
+            "end": 129591,
+            "bytes": 80
+          },
+          {
+            "round": 13,
+            "kind": "proof",
+            "start": 259032,
+            "end": 259111,
+            "bytes": 80
+          },
+          {
+            "round": 13,
+            "kind": "proof",
+            "start": 259112,
+            "end": 259191,
+            "bytes": 80
+          },
+          {
+            "round": 14,
+            "kind": "payload",
+            "start": 186143400,
+            "end": 186300396,
+            "bytes": 156997
+          }
+        ]
+      }
+    },
+    {
+      "workload": "Kettering, Ohio (cross boundaries)",
+      "layout": "variable-16",
+      "repeat": 0,
+      "contentHash": "526d3170ff232cd9a2c2d8db2088a6c8443e95bb20c235223a973ae4f394109a",
+      "stats": {
+        "fanout": 16,
+        "depth": 3,
+        "metadataBytes": 1992,
+        "payloadBytes": 156997,
+        "payloadOverfetch": 98531,
+        "requests": 5,
+        "rounds": 5,
+        "payloadBufferBytes": 156997,
+        "peakProofBatchBytes": 640,
+        "elapsedMs": 4.966469999999958,
+        "trace": [
+          {
+            "round": 1,
+            "kind": "bootstrap",
+            "start": 0,
+            "end": 71,
+            "bytes": 72
+          },
+          {
+            "round": 2,
+            "kind": "proof",
+            "start": 72,
+            "end": 711,
+            "bytes": 640
+          },
+          {
+            "round": 3,
+            "kind": "proof",
+            "start": 6472,
+            "end": 7111,
+            "bytes": 640
+          },
+          {
+            "round": 4,
+            "kind": "proof",
+            "start": 105672,
+            "end": 106311,
+            "bytes": 640
+          },
+          {
+            "round": 5,
+            "kind": "payload",
+            "start": 185990520,
+            "end": 186147516,
+            "bytes": 156997
+          }
+        ]
+      }
+    }
+  ]
+}

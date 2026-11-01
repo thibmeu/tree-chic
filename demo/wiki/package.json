@@ -1,0 +1,16 @@
+{
+  "name": "tree-chic-wikipedia-demo",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "node --test worker.test.ts comparison.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}
