@@ -7,10 +7,10 @@
 <title>Tree-based Chained Hash Integrity Coding for HTTP</title>
 <meta content="Thibault" name="author">
 <meta content="
-       This describes a content-coding for HTTP that enables progressive processing of content, with ranges, without sacrificing integrity. 
+       This document describes a content-coding for HTTP that supports progressive
+integrity verification and verification of selected ranges. 
     " name="description">
 <meta content="xml2rfc 3.34.1" name="generator">
-<meta content="blockchain" name="keyword">
 <meta content="tree" name="keyword">
 <meta content="draft-meunier-httpbis-tree-chic-latest" name="ietf.draft">
 <!-- Generator version information:
@@ -1042,11 +1042,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Tree CHIC</td>
-<td class="right">October 2026</td>
+<td class="right">November 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thibault</td>
-<td class="center">Expires 4 May 2027</td>
+<td class="center">Expires 5 May 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1059,12 @@ svg {
 <dd class="internet-draft">draft-meunier-httpbis-tree-chic-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-10-31" class="published">31 October 2026</time>
+<time datetime="2026-11-01" class="published">1 November 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-05-04">4 May 2027</time></dd>
+<dd class="expires"><time datetime="2027-05-05">5 May 2027</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1077,7 +1077,8 @@ svg {
 <h1 id="title">Tree-based Chained Hash Integrity Coding for HTTP</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This describes a content-coding for HTTP that enables progressive processing of content, with ranges, without sacrificing integrity.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document describes a content-coding for HTTP that supports progressive
+integrity verification and verification of selected ranges.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1113,7 +1114,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1146,61 +1147,72 @@ svg {
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-example" class="internal xref">Example</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-comparison-with-chic" class="internal xref">Comparison with CHIC</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-chained-hash-integrity-form" class="internal xref">Chained Hash Integrity Format</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-format-description" class="internal xref">Format Description</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-consumption-and-validation" class="internal xref">Consumption and Validation</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-construction" class="internal xref">Construction</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-length-constraints" class="internal xref">Length Constraints</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-format-overview" class="internal xref">Format Overview</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-http-usage" class="internal xref">HTTP Usage</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-content-coding" class="internal xref">Content-Coding</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-digest-format" class="internal xref">Digest Format</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-example" class="internal xref">Example</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-chained-hash-integrity-form" class="internal xref">Chained Hash Integrity Format</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-format-description" class="internal xref">Format Description</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-consumption-and-validation" class="internal xref">Consumption and Validation</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-construction" class="internal xref">Construction</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
+                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-length-constraints" class="internal xref">Length Constraints</a></p>
 </li>
             </ul>
 </li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-http-usage" class="internal xref">HTTP Usage</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-content-coding" class="internal xref">Content-Coding</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-digest-format" class="internal xref">Digest Format</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-compression" class="internal xref">Compression</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1212,38 +1224,118 @@ svg {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1"><span>[<a href="#CHIC" class="cite xref">CHIC</a>]</span> splits content into chunks. Each non-final chunk carries the hash
-of the next. Verification follows the chain from the first chunk. Starting
-from its hash, reading a later range requires verifying the preceding chunks.<a href="#section-1-1" class="pilcrow">¶</a></p>
+of the next. A recipient that starts with the first hash follows this chain
+to verify the content. Verifying a later chunk requires reading the earlier
+chunks.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document replaces the chain with a Merkle tree. A trusted root hash
 and a proof allow a recipient to verify a chunk without reading earlier
 content. Chunks can be read sequentially, by range, or out of order.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-1-3.1">
-          <p id="section-1-3.1.1">Variable-length chunks, as in <span>[<a href="#CHIC" class="cite xref">CHIC</a>]</span>. Boundaries can follow application
-needs, such as progressive image rendering.<a href="#section-1-3.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-1-3.2">
-          <p id="section-1-3.2.1">Subtree content lengths authenticate chunk positions in the byte stream.<a href="#section-1-3.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-1-3.3">
-          <p id="section-1-3.3.1">Precompute and store the tree with the content. Serve both from ordinary
-object storage, such as S3, using range requests. No server-generated proofs.<a href="#section-1-3.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-1-3.4">
-          <p id="section-1-3.4.1">Share proof hashes across chunks. TODO: overhead and verifier state.<a href="#section-1-3.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-1-3.5">
-          <p id="section-1-3.5.1">Finish the content before publishing the root hash, as with CHIC.<a href="#section-1-3.5.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<p id="section-1-4">Lengths and hashes sit in a tree header before the content. The content
+<p id="section-1-3">The sender computes the tree in advance and stores it with the content.
+The server serves byte ranges of this encoded representation without
+constructing proofs for individual requests.<a href="#section-1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="example">
+<section id="section-2">
+      <h2 id="name-example">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-example" class="section-name selfRef">Example</a>
+      </h2>
+<p id="section-2-1">A client wants one article from a Wikipedia archive. The archive consists
+of independently compressed streams, with an index that locates the stream
+containing each article. The client has a trusted root hash for the archive
+encoded with the <code>tree-chi</code> content coding.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">In this example, the encoded representation is 1,004,096 bytes long. Its
+length prefix and tree occupy the first 4,096 bytes. The compressed archive
+follows unchanged. These sizes are illustrative.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">The client first requests the beginning of the encoded representation:<a href="#section-2-3" class="pilcrow">¶</a></p>
+<div class="lang-http-message sourcecode" id="section-2-4">
+<pre>
+GET /wikipedia.xml.bz2 HTTP/1.1
+Host: example.com
+Accept-Encoding: tree-chi
+Range: bytes=0-4095
+</pre><a href="#section-2-4" class="pilcrow">¶</a>
+</div>
+<div class="lang-http-message sourcecode" id="section-2-5">
+<pre>
+HTTP/1.1 206 Partial Content
+Content-Type: application/octet-stream
+Content-Encoding: tree-chi
+Content-Range: bytes 0-4095/1004096
+Content-Length: 4096
+ETag: "wiki-tree-1"
+Vary: Accept-Encoding
+
+[4096 bytes containing the length prefix and tree]
+</pre><a href="#section-2-5" class="pilcrow">¶</a>
+</div>
+<p id="section-2-6">The client verifies the tree against its trusted root. The article index
+locates a compressed stream at archive offsets 65,536 through 98,303.
+That stream is also one chunk of the coding. The verified tree establishes
+its position, length, and expected hash.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-7">Byte ranges address the encoded representation (<span><a href="https://rfc-editor.org/rfc/rfc9110#section-14.1.2" class="relref">Section 14.1.2</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>).
+Adding the 4,096-byte prefix gives the range 69,632 through 102,399:<a href="#section-2-7" class="pilcrow">¶</a></p>
+<div class="lang-http-message sourcecode" id="section-2-8">
+<pre>
+GET /wikipedia.xml.bz2 HTTP/1.1
+Host: example.com
+Accept-Encoding: tree-chi
+If-Match: "wiki-tree-1"
+Range: bytes=69632-102399
+</pre><a href="#section-2-8" class="pilcrow">¶</a>
+</div>
+<div class="lang-http-message sourcecode" id="section-2-9">
+<pre>
+HTTP/1.1 206 Partial Content
+Content-Type: application/octet-stream
+Content-Encoding: tree-chi
+Content-Range: bytes 69632-102399/1004096
+Content-Length: 32768
+ETag: "wiki-tree-1"
+Vary: Accept-Encoding
+
+[32768 bytes containing the compressed stream]
+</pre><a href="#section-2-9" class="pilcrow">¶</a>
+</div>
+<p id="section-2-10">Using the retained tree, the client verifies the chunk, decompresses the
+stream, and extracts the article. This retrieves 36,864 bytes of the encoded
+representation. The compressed stream can contain other articles, but the
+client does not need the rest of the archive.<a href="#section-2-10" class="pilcrow">¶</a></p>
+<p id="section-2-11">The If-Match header field (<span><a href="https://rfc-editor.org/rfc/rfc9110#section-13.1.1" class="relref">Section 13.1.1</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>) makes the second
+request conditional on the same representation. The trusted root provides
+the integrity check.<a href="#section-2-11" class="pilcrow">¶</a></p>
+<p id="section-2-12">For a larger tree, the client could retrieve only the records needed for
+the selected chunks. A full response carries the tree followed by the
+archive, allowing the client to verify chunks as they arrive.<a href="#section-2-12" class="pilcrow">¶</a></p>
+<div id="comparison-with-chic">
+<section id="section-2.1">
+        <h3 id="name-comparison-with-chic">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-comparison-with-chic" class="section-name selfRef">Comparison with CHIC</a>
+        </h3>
+<p id="section-2.1-1">Both codings require a particular encoded representation. Starting with
+only the initial hash, CHIC requires the preceding chunks to verify a
+selected range. Tree CHIC uses tree records to verify that range without
+retrieving the preceding content.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="format-overview">
+<section id="section-3">
+      <h2 id="name-format-overview">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-format-overview" class="section-name selfRef">Format Overview</a>
+      </h2>
+<p id="section-3-1">Chunks can have different lengths. Branches commit to the lengths and
+hashes of their children. This lets a reader verify a chunk and its position
+in the content. As with <span>[<a href="#CHIC" class="cite xref">CHIC</a>]</span>, construction requires the complete content.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">Lengths and hashes sit in a tree header before the content. The content
 bytes stay contiguous, with no framing between chunks. A header length
-allows a reader to skip the tree and locate the content.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">The tree header contains records of this form (tags omitted):<a href="#section-1-5" class="pilcrow">¶</a></p>
+allows a reader to skip the tree and locate the content.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">The tree header contains records of this form (tags omitted):<a href="#section-3-3" class="pilcrow">¶</a></p>
 <span id="name-tree-header-logical-structu"></span><div id="_figure-tree">
 <figure id="figure-1">
-        <div id="section-1-6.1">
-          <div class="alignLeft art-svg artwork" id="section-1-6.1.1">
+        <div id="section-3-4.1">
+          <div class="alignLeft art-svg artwork" id="section-3-4.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="320" width="384" viewBox="0 0 384 320" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 8,192 L 8,224" fill="none" stroke="black"></path>
               <path d="M 64,96 L 64,128" fill="none" stroke="black"></path>
@@ -1309,18 +1401,18 @@ allows a reader to skip the tree and locate the content.<a href="#section-1-4" c
                 <text x="336" y="292">Chunk</text>
                 <text x="368" y="292">3</text>
               </g>
-            </svg><a href="#section-1-6.1.1" class="pilcrow">¶</a>
+            </svg><a href="#section-3-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-tree-header-logical-structu" class="selfRef">Tree Header (Logical Structure)</a>
         </figcaption></figure>
 </div>
-<p id="section-1-7">On the wire:<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-3-5">On the wire:<a href="#section-3-5" class="pilcrow">¶</a></p>
 <span id="name-overview-of-format"></span><div id="_figure-overview">
 <figure id="figure-2">
-        <div id="section-1-8.1">
-          <div class="alignLeft art-svg artwork" id="section-1-8.1.1">
+        <div id="section-3-6.1">
+          <div class="alignLeft art-svg artwork" id="section-3-6.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="128" width="472" viewBox="0 0 472 128" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
               <path d="M 112,32 L 112,64" fill="none" stroke="black"></path>
@@ -1364,7 +1456,7 @@ allows a reader to skip the tree and locate the content.<a href="#section-1-4" c
                 <text x="316" y="100">Continuous</text>
                 <text x="392" y="100">content</text>
               </g>
-            </svg><a href="#section-1-8.1.1" class="pilcrow">¶</a>
+            </svg><a href="#section-3-6.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
@@ -1372,187 +1464,184 @@ allows a reader to skip the tree and locate the content.<a href="#section-1-4" c
         </figcaption></figure>
 </div>
 <ul class="normal">
-<li class="normal" id="section-1-9.1">
-          <p id="section-1-9.1.1">Header length counts tree header bytes, excluding the length field itself.<a href="#section-1-9.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3-7.1">
+          <p id="section-3-7.1.1">Header length counts tree header bytes, excluding the length field itself.<a href="#section-3-7.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-9.2">
-          <p id="section-1-9.2.1">Length beside a hash counts content bytes covered by that hash.<a href="#section-1-9.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-3-7.2">
+          <p id="section-3-7.2.1">Length beside a hash counts content bytes covered by that hash.<a href="#section-3-7.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-9.3">
-          <p id="section-1-9.3.1">A sequential reader receives the tree header before the first chunk.<a href="#section-1-9.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-3-7.3">
+          <p id="section-3-7.3.1">A sequential reader receives the tree header before the first chunk.<a href="#section-3-7.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-1-10">TODO: node encoding and layout that keeps proof retrieval to a few requests.<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-3-8">TODO: node encoding and layout that keeps proof retrieval to a few requests.<a href="#section-3-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
-<section id="section-2">
+<section id="section-4">
       <h2 id="name-conventions-and-definitions">
-<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
       </h2>
-<p id="section-2-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+<p id="section-4-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
-appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
+appear in all capitals, as shown here.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="chained-hash-integrity-format">
-<section id="section-3">
+<section id="section-5">
       <h2 id="name-chained-hash-integrity-form">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-chained-hash-integrity-form" class="section-name selfRef">Chained Hash Integrity Format</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-chained-hash-integrity-form" class="section-name selfRef">Chained Hash Integrity Format</a>
       </h2>
 <div id="format-description">
-<section id="section-3.1">
+<section id="section-5.1">
         <h3 id="name-format-description">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-format-description" class="section-name selfRef">Format Description</a>
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-format-description" class="section-name selfRef">Format Description</a>
         </h3>
 <ul class="normal">
-<li class="normal" id="section-3.1-1.1">
-            <p id="section-3.1-1.1.1">Encoding: header length, tree header, original content bytes.<a href="#section-3.1-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5.1-1.1">
+            <p id="section-5.1-1.1.1">Encoding: header length, tree header, original content bytes.<a href="#section-5.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.1-1.2">
-            <p id="section-3.1-1.2.1">Tree header: branch records with a content length beside each child hash.<a href="#section-3.1-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.1-1.2">
+            <p id="section-5.1-1.2.1">Tree header: branch records with a content length beside each child hash.<a href="#section-5.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.1-1.3">
-            <p id="section-3.1-1.3.1">Leaf hashes cover chunks in the continuous content region.<a href="#section-3.1-1.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.1-1.3">
+            <p id="section-5.1-1.3.1">Leaf hashes cover chunks in the continuous content region.<a href="#section-5.1-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.1-1.4">
-            <p id="section-3.1-1.4.1">Branch hashes commit to child lengths as well as child hashes.<a href="#section-3.1-1.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.1-1.4">
+            <p id="section-5.1-1.4.1">Branch hashes commit to child lengths as well as child hashes.<a href="#section-5.1-1.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.1-1.5">
-            <p id="section-3.1-1.5.1">Root hash carried outside the content.<a href="#section-3.1-1.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.1-1.5">
+            <p id="section-5.1-1.5.1">Root hash carried outside the content.<a href="#section-5.1-1.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-3.1-2">TODO: tagged hash inputs, tree shape, header-length commitment, and compact
+<p id="section-5.1-2">TODO: tagged hash inputs, tree shape, header-length commitment, and compact
 proof encoding. Skipping a branch record needs an encoded size or a layout
-from which that size can be derived.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+from which that size can be derived.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="consumption-and-validation">
-<section id="section-3.2">
+<section id="section-5.2">
         <h3 id="name-consumption-and-validation">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-consumption-and-validation" class="section-name selfRef">Consumption and Validation</a>
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-consumption-and-validation" class="section-name selfRef">Consumption and Validation</a>
         </h3>
-<p id="section-3.2-1">Read the header length and parse the tree header. Start with a trusted root
-hash; verify branches before trusting their child hashes and content lengths.
+<p id="section-5.2-1">Read the header length and parse the tree header. Start with a trusted root
+hash. Verify branches before trusting their child hashes and content lengths.
 Use the lengths to split the content into chunks. Verify each chunk before
-releasing it.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">For a range, retrieve the covering chunks and the required header records.
+releasing it.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">For a range, retrieve the covering chunks and the required header records.
 Content offsets are sums of preceding chunk lengths. Stored offsets add the
-length field size and tree header length.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.2-3">TODO: partial header retrieval and ranges that cut through chunks.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+length field size and tree header length.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">TODO: partial header retrieval and ranges that cut through chunks.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="construction">
-<section id="section-3.3">
+<section id="section-5.3">
         <h3 id="name-construction">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-construction" class="section-name selfRef">Construction</a>
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-construction" class="section-name selfRef">Construction</a>
         </h3>
-<p id="section-3.3-1">Split content into chunks. Hash leaves, then branches, up to the root.
+<p id="section-5.3-1">Split content into chunks. Hash leaves, then branches, up to the root.
 Chunks can be hashed independently. Write the header length and tree header,
-then copy the original content unchanged.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2">TODO: order of records within the tree header and index for range retrieval.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+then copy the original content unchanged.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-2">TODO: order of records within the tree header and index for range retrieval.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="length-constraints">
-<section id="section-3.4">
+<section id="section-5.4">
         <h3 id="name-length-constraints">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-length-constraints" class="section-name selfRef">Length Constraints</a>
+<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-length-constraints" class="section-name selfRef">Length Constraints</a>
         </h3>
-<p id="section-3.4-1">TODO: header length, chunk size, and tree depth limits; verifier buffering.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.4-1">TODO: header length, chunk size, tree depth, and verifier buffering limits.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="http-usage">
-<section id="section-4">
+<section id="section-6">
       <h2 id="name-http-usage">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-http-usage" class="section-name selfRef">HTTP Usage</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-http-usage" class="section-name selfRef">HTTP Usage</a>
       </h2>
 <div id="content-coding">
-<section id="section-4.1">
+<section id="section-6.1">
         <h3 id="name-content-coding">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-content-coding" class="section-name selfRef">Content-Coding</a>
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-content-coding" class="section-name selfRef">Content-Coding</a>
         </h3>
-<p id="section-4.1-1">Use <code>tree-chi</code> as a placeholder content-coding name.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-1">Use <code>tree-chi</code> as a placeholder content-coding name.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="digest-format">
-<section id="section-4.2">
+<section id="section-6.2">
         <h3 id="name-digest-format">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-digest-format" class="section-name selfRef">Digest Format</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-digest-format" class="section-name selfRef">Digest Format</a>
         </h3>
-<p id="section-4.2-1">Use <code>tree-chi</code> as a placeholder digest algorithm name. Value: root hash.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">TODO: interaction with Content-Digest and Repr-Digest for partial responses.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.2-1">Use <code>tree-chi</code> as a placeholder digest algorithm name, with the root hash
+as its value. Following <span>[<a href="#CHIC" class="cite xref">CHIC</a>]</span>, this could be carried in Content-Digest
+or Repr-Digest (<span>[<a href="#DIGEST" class="cite xref">DIGEST</a>]</span>).<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">TODO:<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.2-3.1">
+            <p id="section-6.2-3.1.1">Define the digest calculation and value encoding.<a href="#section-6.2-3.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.2-3.2">
+            <p id="section-6.2-3.2.1">Define its meaning in Content-Digest and Repr-Digest, including for
+partial responses.<a href="#section-6.2-3.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.2-3.3">
+            <p id="section-6.2-3.3.1">Define which bytes it covers when other content codings are applied.<a href="#section-6.2-3.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.2-3.4">
+            <p id="section-6.2-3.4.1">Describe how the recipient obtains a trusted value. The example in
+<a href="#example" class="auto internal xref">Section 2</a> assumes it already has one.<a href="#section-6.2-3.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
 </section>
 </div>
-<div id="example">
-<section id="section-4.3">
-        <h3 id="name-example">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-example" class="section-name selfRef">Example</a>
+<div id="compression">
+<section id="section-6.3">
+        <h3 id="name-compression">
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-compression" class="section-name selfRef">Compression</a>
         </h3>
-<p id="section-4.3-1">Full response, following the header layout in <span>[<a href="#CHIC" class="cite xref">CHIC</a>]</span>.
-Angle-bracket values are placeholders, not valid wire syntax.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
-<div class="lang-http-message sourcecode" id="section-4.3-2">
-<pre>
-HTTP/1.1 200 OK
-Content-Type: application/octet-stream
-Content-Encoding: tree-chi
-Content-Length: &lt;encoded length&gt;
-Content-Digest: tree-chi=:&lt;base64 root hash&gt;:
-Accept-Ranges: bytes
-</pre><a href="#section-4.3-2" class="pilcrow">¶</a>
-</div>
-<p id="section-4.3-3">Range retrieval from the stored encoding:<a href="#section-4.3-3" class="pilcrow">¶</a></p>
-<div class="lang-http-message sourcecode" id="section-4.3-4">
-<pre>
-GET /object HTTP/1.1
-Host: example.com
-Range: bytes=&lt;start&gt;-&lt;end&gt;
-</pre><a href="#section-4.3-4" class="pilcrow">¶</a>
-</div>
-<div class="lang-http-message sourcecode" id="section-4.3-5">
-<pre>
-HTTP/1.1 206 Partial Content
-Content-Type: application/octet-stream
-Content-Encoding: tree-chi
-Content-Range: bytes &lt;start&gt;-&lt;end&gt;/&lt;encoded length&gt;
-Content-Length: &lt;range length&gt;
-</pre><a href="#section-4.3-5" class="pilcrow">¶</a>
-</div>
-<p id="section-4.3-6">The recipient already holds the trusted root. Additional ranges may be
-needed for tree header records. These offsets address the stored encoding,
-including the length prefix and tree header.<a href="#section-4.3-6" class="pilcrow">¶</a></p>
-<p id="section-4.3-7">TODO: define decoding of partial responses.<a href="#section-4.3-7" class="pilcrow">¶</a></p>
+<p id="section-6.3-1">Content-Encoding can list multiple codings in the order they were applied
+(<span><a href="https://rfc-editor.org/rfc/rfc9110#section-8.4" class="relref">Section 8.4</a> of [<a href="#HTTP" class="cite xref">HTTP</a>]</span>). For example, <code>Content-Encoding: gzip, tree-chi</code>
+applies gzip first, then this coding. The recipient verifies the compressed
+chunks while removing the tree coding, then decompresses them.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.3-2">The order <code>Content-Encoding: tree-chi, gzip</code> compresses the tree and content
+together. The recipient decompresses before verifying. Byte ranges then
+address that outer compressed representation, so the offsets in
+<a href="#example" class="auto internal xref">Section 2</a> would no longer apply.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
+<p id="section-6.3-3">Neither order makes a gzip stream independently decompressible at arbitrary
+offsets. The archive in <a href="#example" class="auto internal xref">Section 2</a> already has independently compressed
+streams. A client can decompress a selected stream after verifying its
+bytes. This compression is part of the archive format.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="security">
-<section id="section-5">
+<section id="section-7">
       <h2 id="name-security-considerations">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-5-1">TODO Security<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">TODO Security<a href="#section-7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana">
-<section id="section-6">
+<section id="section-8">
       <h2 id="name-iana-considerations">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-6-1">TODO: content-coding and digest algorithm registrations.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">TODO: content-coding and digest algorithm registrations.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
-<section id="section-7">
+<section id="section-9">
       <h2 id="name-references">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-7.1">
+<section id="section-9.1">
         <h3 id="name-normative-references">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
@@ -1567,14 +1656,22 @@ including the length prefix and tree header.<a href="#section-4.3-6" class="pilc
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-7.2">
+<section id="section-9.2">
         <h3 id="name-informative-references">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="CHIC">[CHIC]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Chained Hash Integrity Coding for HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-thomson-httpbis-chic-00</span>, <time datetime="2026-10-31" class="refDate">31 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-thomson-httpbis-chic-00">https://datatracker.ietf.org/doc/html/draft-thomson-httpbis-chic-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="DIGEST">[DIGEST]</dt>
+        <dd>
+<span class="refAuthor">Polli, R.</span> and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"Digest Fields"</span>, <span class="seriesInfo">RFC 9530</span>, <span class="seriesInfo">DOI 10.17487/RFC9530</span>, <time datetime="2024-02" class="refDate">February 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9530">https://www.rfc-editor.org/rfc/rfc9530</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="HTTP">[HTTP]</dt>
+      <dd>
+<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="seriesInfo">STD 97</span>, <span class="seriesInfo">RFC 9110</span>, <span class="seriesInfo">DOI 10.17487/RFC9110</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
